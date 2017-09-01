@@ -9,11 +9,10 @@ public class Allocation implements allocationState {
 	
 	public Allocation() {
 		setaState(new inProcess());
-		System.out.println("status: "+ getaState());
 	}
 	
 	public allocationState getaState() {
-		return aState;
+		return aState.state();
 	}
 
 	public void setaState(allocationState aState) {
@@ -21,8 +20,9 @@ public class Allocation implements allocationState {
 	}
 
 	@Override
-	public void state() {
+	public allocationState state() {
 		this.aState.state();
+		return null;
 	}
 
 

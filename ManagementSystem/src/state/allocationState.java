@@ -2,7 +2,7 @@ package state;
 
 public interface allocationState {
 	
-	public void state();
+	public allocationState state();
 	
 //	public void inProcess();
 //	public void allocated();

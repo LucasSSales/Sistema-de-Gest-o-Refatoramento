@@ -13,8 +13,8 @@ public class allocationContext implements allocationState{
 	}
 
 	@Override
-	public void state() {
-		this.aState.state();
+	public allocationState state() {
+		return this.aState.state();
 	}
 	
 }

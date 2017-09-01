@@ -3,7 +3,8 @@ package state;
 public class inProcess implements allocationState {
 
 	@Override
-	public void state() {
+	public allocationState state() {
 		System.out.println("In Process");
+		return null;
 	}
 }

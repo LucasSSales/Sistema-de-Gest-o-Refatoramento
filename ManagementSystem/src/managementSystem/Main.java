@@ -27,10 +27,6 @@ public class Main {
 		
 		
 		
-		
-		
-		
-
 		//System.out.println("O que deseja fazer?\n1- Cadastro\n2- Alocar\n3- Consultar\n4- Emitir Relatorio\n\n0- SAIR");		
 		//option = scan.nextInt();
 		
@@ -42,11 +38,3 @@ public class Main {
 	}
 
 }
-
-
-//STATE -> para mudar estado da alocação
-//DECORATOR P USERS?
-//Strategy?
-//observer?
-//proxy -> controlar acesso
-//prototype
