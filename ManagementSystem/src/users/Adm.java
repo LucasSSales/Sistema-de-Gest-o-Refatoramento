@@ -1,5 +1,8 @@
 package users;
 
-public class Adm {
+public class Adm extends User {
 
+	//setType(-1);
+	
+	
 }
