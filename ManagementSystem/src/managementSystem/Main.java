@@ -1,5 +1,6 @@
 package managementSystem;
 import java.util.Scanner;
+import users.*;
 
 import allocation.Allocation;
 import users.User;
@@ -8,33 +9,36 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-/*		User user = null;
-		int option;
-		Scanner scan = new Scanner(System.in);
-
 		System.out.println("WELLCOME!");
+		Scanner scan = new Scanner(System.in);
+		int option;
+		Consult c = null;
 		
-		System.out.println("1- SIGN IN/ 2- SIGN UP");
-		option = scan.nextInt();
-		
-		if(option == 1) {
-			System.out.println("Insert code: ");
-		}else{
+		System.out.println("WHAT DO YOU WISH TO DO?");
+		do {
+			System.out.println("1- Register"
+					+ "\n2- Allocate"
+					+ "\n3- Consult"
+					+ "\n4- Get Relatory"
+					+ "\n0- EXIT");
 			
-		}
+			option = scan.nextInt();
+			
+			if(option==1) {
+				//c.addUser(new User());
+			}else if(option==2) {
+				
+			}else if(option == 3) {
+				
+			}else if(option==4) {
+				
+			}
+			
+			if(option!=0)
+				System.out.println("WANT REALIZE ANOTHER OPERATION?\n\t1 - YES/0 - NO");
+			
+		}while(option!=0);
+		System.out.println("THE PROCESS WAS FINISHED");
 		
-	*/	
-		
-		
-		
-		//System.out.println("O que deseja fazer?\n1- Cadastro\n2- Alocar\n3- Consultar\n4- Emitir Relatorio\n\n0- SAIR");		
-		//option = scan.nextInt();
-		
-		Allocation a = new Allocation();
-		
-
-		
-
 	}
-
 }
