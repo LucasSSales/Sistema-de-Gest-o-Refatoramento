@@ -13,6 +13,9 @@ public class Researcher extends User {
 		System.out.println("What's your research?");
 		setResearch(scanS.nextLine());
 		
+		setKind("Reseacher");
+		setDesc("Research: "+ research);
+		
 		System.out.println("Register concluded!");
 	}
 
@@ -22,10 +25,5 @@ public class Researcher extends User {
 
 	public void setResearch(String research) {
 		this.research = research;
-	}
-	
-	
-	
-	
-	
+	}	
 }

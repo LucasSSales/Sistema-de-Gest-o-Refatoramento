@@ -31,6 +31,9 @@ public class Student extends User {
 			System.out.println("Invalid option!");
 		}
 		
+		setKind("Student");
+		setDesc("Course: " + course +"  Degree: "+StudentType);
+		
 		System.out.println("Register concluded!");
 		
 	}
@@ -50,8 +53,4 @@ public class Student extends User {
 	public void setCourse(String course) {
 		this.course = course;
 	}
-	
-	
-	
-
 }

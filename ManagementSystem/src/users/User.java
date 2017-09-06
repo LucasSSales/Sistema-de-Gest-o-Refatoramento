@@ -1,16 +1,24 @@
 package users;
 
+import java.util.Scanner;
+
 public class User {
 	
 	private String name;
 	private int age;
 	private int ID;
 	private int type;
+	private String kind;
+	private String desc;
 	
 	
 	public User() {
+		Scanner scan = new Scanner(System.in);
+		Scanner scanI = new Scanner(System.in);
 		System.out.println("NAME:");
+		setName(scan.nextLine());
 		System.out.println("AGE: ");
+		setAge(scanI.nextInt());
 	}
 	
 	public boolean haveAcess() {
@@ -60,8 +68,27 @@ public class User {
 	public void setType(int type) {
 		this.type = type;
 	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
 	
-	
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 	
 
+	public String toString(){
+		return "Name: " + getName() + 
+				"\nID: " + getID() + "  Age: "+ getAge() + "  Type: " + getKind() +
+				"\n" + getDesc() + "\n";
+	}
 }
