@@ -1,37 +1,98 @@
 package allocation;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import state.AllocStatus;
 import state.allocationState;
-import state.inProcess;
 
-public class Allocation implements allocationState {
+public class Allocation extends AllocStatus {
 	
-	private allocationState aState;
+	private String name;
+	private String code;
+	private String date;
+	private ArrayList<String> schedules;
+	private String aState;
+	private Activity activity;
 	
-	public Allocation() {
-		setaState(new inProcess());
+	
+	public Allocation(String name, String code) {
+		this.name = name;
+		this.code = code;
+		setaState(inProcess());
 	}
 	
-	public allocationState getaState() {
-		return aState.state();
+
+	public String getaState() {
+		return aState;
 	}
 
-	public void setaState(allocationState aState) {
+
+	public void setaState(String aState) {
 		this.aState = aState;
 	}
 
+
+	public void registerNew() {
+		System.out.println("What type of allocation will be registered?"
+				+ "1- Projector\n"
+				+ "2- Classroom\n"
+				+ "3- Labaoratory");
+		
+		//if 1, new proj
+		//if 2, new class
+		//if 3, new lab
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public ArrayList<String> getSchedules() {
+		return schedules;
+	}
+
+	public void setSchedules(ArrayList<String> schedules) {
+		this.schedules = schedules;
+	}
+
+	public Activity getActivity() {
+		return activity;
+	}
+
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
+	
+	
 	@Override
-	public allocationState state() {
-		this.aState.state();
-		return null;
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Name: " + name + "   Status: " + getaState();
 	}
-
-
-
-
-
-
-	public void alocate() {
-		System.out.println("WHAT DO YOU WISH TO ALLOCATE?");
-	}
+	
+	
+	
 
 }
