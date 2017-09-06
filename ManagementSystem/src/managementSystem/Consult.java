@@ -4,10 +4,14 @@ import java.util.ArrayList;
 
 public class Consult <T>{
 	
-	ArrayList<T> a;
+	private ArrayList<T> a;
 	
 	public void add(T t){
-		a.add(t);
+		if(a == null) {
+			a = new ArrayList<T>();
+			a.add(t);
+		}else
+			a.add(t);
 	}
 	
 	public void delete(String code) {
@@ -18,10 +22,14 @@ public class Consult <T>{
 		
 	}
 	
-	public void getRealatory() {
+	public void doConsult() {
 		for (T t : a) {
-			System.out.println(t);
+			//buscar
 		}
+	}
+
+	public ArrayList<T> getA() {
+		return a;
 	}
 
 }
