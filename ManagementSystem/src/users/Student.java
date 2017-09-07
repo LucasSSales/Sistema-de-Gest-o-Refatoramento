@@ -16,9 +16,9 @@ public class Student extends User {
 		System.out.println("What's your course?");
 		setCourse(scanS.nextLine());
 		
-		System.out.println("What degree?"
-				+ "1- graduation"
-				+ "2- master's"
+		System.out.println("What degree?\n"
+				+ "1- graduation\n"
+				+ "2- master's\n"
 				+ "3- doctorate");
 		option = scan.nextInt();
 		if(option == 1) {
@@ -30,9 +30,6 @@ public class Student extends User {
 		}else {
 			System.out.println("Invalid option!");
 		}
-		
-		setKind("Student");
-		setDesc("Course: " + course +"  Degree: "+StudentType);
 		
 		System.out.println("Register concluded!");
 		
@@ -52,5 +49,11 @@ public class Student extends User {
 
 	public void setCourse(String course) {
 		this.course = course;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + "  Type: Student\n"
+				+ "Course: " + getCourse() + "  Degree: " + getStudentType();
 	}
 }

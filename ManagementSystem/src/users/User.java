@@ -2,15 +2,13 @@ package users;
 
 import java.util.Scanner;
 
+
 public class User {
 	
 	private String name;
 	private int age;
-	private int ID;
-	private int type;
-	private String kind;
-	private String desc;
-	
+	private String ID;
+	private int type;	
 	
 	public User() {
 		Scanner scan = new Scanner(System.in);
@@ -53,11 +51,11 @@ public class User {
 		this.age = age;
 	}
 
-	public int getID() {
+	public String getID() {
 		return ID;
 	}
 
-	public void setID(int iD) {
+	public void setID(String iD) {
 		ID = iD;
 	}
 
@@ -69,26 +67,8 @@ public class User {
 		this.type = type;
 	}
 
-	public String getKind() {
-		return kind;
-	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
-	
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-	
-
 	public String toString(){
 		return "Name: " + getName() + 
-				"\nID: " + getID() + "  Age: "+ getAge() + "  Type: " + getKind() +
-				"\n" + getDesc() + "\n";
+				"\nID: " + getID() + "  Age: "+ getAge();
 	}
 }

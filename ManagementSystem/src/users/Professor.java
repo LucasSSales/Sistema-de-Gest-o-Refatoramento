@@ -13,9 +13,6 @@ public class Professor extends User {
 		System.out.println("What subject you'll teach?");
 		setSubject(scanS.nextLine());
 		
-		setKind("Professor");
-		setDesc("Subject: "+ subject);
-		
 		System.out.println("Register concluded!");
 	}
 
@@ -25,5 +22,11 @@ public class Professor extends User {
 
 	public void setSubject(String subject) {
 		this.subject = subject;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + "  Type: Professor\n"
+				+ "Subject: " + getSubject();
 	}
 }
