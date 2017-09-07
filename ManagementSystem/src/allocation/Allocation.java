@@ -13,7 +13,7 @@ public class Allocation extends AllocStatus {
 	private String date;
 	private ArrayList<String> schedules;
 	private String aState;
-	private Activity activity;
+	private ArrayList<Activity> activity;
 	
 	
 	public Allocation(String name, String code) {
@@ -22,28 +22,13 @@ public class Allocation extends AllocStatus {
 		setaState(inProcess());
 	}
 	
-
 	public String getaState() {
 		return aState;
 	}
 
-
 	public void setaState(String aState) {
 		this.aState = aState;
 	}
-
-
-	public void registerNew() {
-		System.out.println("What type of allocation will be registered?"
-				+ "1- Projector\n"
-				+ "2- Classroom\n"
-				+ "3- Labaoratory");
-		
-		//if 1, new proj
-		//if 2, new class
-		//if 3, new lab
-	}
-
 
 	public String getName() {
 		return name;
@@ -77,22 +62,19 @@ public class Allocation extends AllocStatus {
 		this.schedules = schedules;
 	}
 
-	public Activity getActivity() {
+	public ArrayList<Activity> getActivity() {
 		return activity;
 	}
 
-	public void setActivity(Activity activity) {
+	public void setActivity(ArrayList<Activity> activity) {
 		this.activity = activity;
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "Name: " + name + "   Status: " + getaState();
 	}
 	
-	
-	
-
 }

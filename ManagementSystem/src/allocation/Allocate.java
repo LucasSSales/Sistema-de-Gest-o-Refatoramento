@@ -3,10 +3,12 @@ package allocation;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Allocate extends Allocation {
+import Strategy.Strategy;
+
+public class Allocate extends Strategy{
 	
 	public void Allocate(ArrayList<Allocation> alloc, int userType) {
-		System.out.println("WHAT DO YOU WISH TO ALLOCATE?");
+		System.out.println("WHAT DO YOU WISH TO ALLOCATE?\n(Type the name or the code)");
 		
 		
 		Scanner scan = new Scanner(System.in);
@@ -16,33 +18,32 @@ public class Allocate extends Allocation {
 		Allocation toAlloc = null;
 
 		for (Allocation al : alloc) {
-			if(s.equals(al.getName())) {
+			if(s.equals(al.getName()) || s.equals(al.getCode())) {
 				System.out.println("Allocation found");
 				toAlloc = al;
 				break;
 			}
 		}
 		
-		
 		if(toAlloc == null) {
 			System.out.println("Allocation not Found :(");
 		}else{
 			
-			
 	   		String[] sch = {"07h30 - 09h10", "09h20 - 11h00","11h10 - 12h50" ,"13h30 - 15h10","15h20 - 17h00","17h10 - 18h50"}; 
 			
-			
 			System.out.println("Type the date (DD/MM)");
-			toAlloc.setDate(scan.nextLine());
+			String date = scan.nextLine();
 			String hr = null;
 						
-			
-			for (String st : toAlloc.getSchedules()) {
-				if(st.substring(0, 5).equals(toAlloc.getDate())) {
-					hr = st.substring(10);
+			if(toAlloc.getSchedules() != null) {
+				for (String st : toAlloc.getSchedules()) {
+					if(st.substring(0, 5).equals(date)) {
+						hr = st.substring(9, 22);
+					}
 				}
 			}
 			
+			System.out.println(hr);
 			
 			boolean x = true;
 			int op;
@@ -58,10 +59,12 @@ public class Allocate extends Allocation {
 				op = scanI.nextInt();
 				
 				if(hr != null) {
-					if(!sch[op].equals(hr))
-						x = false;
-					else
+					System.out.println(sch[op-1] + " e " + hr);
+					if(sch[op-1].equals(hr))
 						System.out.println("Already allocated, try again");
+					else
+						x = false;
+						
 				}else {
 					x = false;
 				}
@@ -69,18 +72,19 @@ public class Allocate extends Allocation {
 			}while(x);
 			
 			ArrayList<String> schedules = toAlloc.getSchedules();
-			schedules.add(getDate() + " at " + sch[op]);
+			if(schedules == null) {
+				schedules = new ArrayList<String>();
+			}
 			
-			toAlloc.setActivity(new Activity(userType));			
+			toAlloc.setSchedules(schedules);
+			
+			Activity act = new Activity(userType);
+			
+			schedules.add(date + " at " + sch[op-1] + "\n" + act);
+			toAlloc.setaState("Alocated");
+			System.out.println("Allocation Concluded");		
 		}
 		
-		setaState(alocated());
-		System.out.println("Allocation Concluded");
-		
 	}
-	
-	public Allocate(String name, String code) {
-		super(name, code);
-		// TODO Auto-generated constructor stub
-	}
+
 }

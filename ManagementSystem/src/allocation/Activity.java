@@ -21,10 +21,10 @@ public class Activity {
 		int op;
 		
 		System.out.println("What activity will be plan?");
-		System.out.print("1-Presentation\n"
+		System.out.print("1- Presentation\n"
 				+ "2- Laboratory\n");
 		if(userType != 0)
-			System.out.println("3-Normal Class");
+			System.out.println("3- Normal Class");
 		
 		setType(scanI.nextInt());
 		
@@ -34,7 +34,7 @@ public class Activity {
 		setParticipants(scan.nextLine());
 		System.out.println("Set a description");
 		setDescription(scan.nextLine());
-		System.out.println("Support matreial (type 'none' in case of no material)");
+		System.out.println("Support material (type 'none' in case of no material)");
 		setSupportMaterial(scan.nextLine());		
 	}
 	
@@ -69,6 +69,12 @@ public class Activity {
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Title: " + getTitle() + "  Type: "+ getType() + "\nParticipants: " + getParticipants() + "  Support Material: " + getSupportMaterial() + "\nDescription: " + getDescription() + "\n";
 	}
 
 }
