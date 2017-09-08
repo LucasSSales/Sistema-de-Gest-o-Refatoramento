@@ -2,6 +2,8 @@ package managementSystem;
 
 import java.util.ArrayList;
 
+import allocation.Allocation;
+
 public class Relatory {
 	
 	private int numUsers;
@@ -12,13 +14,24 @@ public class Relatory {
 		setNumUsers(0);
 	}
 	
-		
-	public <T> void getRelatory(ArrayList<T> a) {
-		for (T t : a) {
-			System.out.println(t);
+	public void getRelatory(ArrayList<Allocation> a) {
+		for (Allocation alloc : a) {
+			System.out.println(alloc);
+			haveSchedules(alloc);
+			System.out.println();
 		}
 	}
 
+	public void haveSchedules(Allocation a) {
+		if(a.getSchedules() == null)
+			System.out.println("No allocations planned");
+		else {
+			for (String sch : a.getSchedules()) {
+				System.out.println(sch);
+			}
+		}
+	}
+	
 
 	public int getNumUsers() {
 		return numUsers;
@@ -34,13 +47,7 @@ public class Relatory {
 		return numAlloc;
 	}
 
-
 	public void setNumAlloc(int numAlloc) {
 		this.numAlloc = numAlloc;
 	}
-	
-	
-	
-	
-
 }

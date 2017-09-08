@@ -2,17 +2,14 @@ package managementSystem;
 
 import java.util.ArrayList;
 
-public class Consult <T>{
+import Strategy.Strategy;
+import allocation.Allocation;
+import users.User;
+
+public class Consult <T> extends Strategy{
 	
 	private ArrayList<T> a;
 	
-	public void add(T t){
-		if(a == null) {
-			a = new ArrayList<T>();
-			a.add(t);
-		}else
-			a.add(t);
-	}
 	
 	public void delete(String code) {
 		
@@ -22,10 +19,8 @@ public class Consult <T>{
 		
 	}
 	
-	public void doConsult() {
-		for (T t : a) {
-			//buscar
-		}
+	public void setA(ArrayList<T> a) {
+		this.a = a;
 	}
 
 	public ArrayList<T> getA() {
