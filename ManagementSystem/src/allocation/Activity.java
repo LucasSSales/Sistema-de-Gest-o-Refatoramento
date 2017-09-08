@@ -2,6 +2,7 @@ package allocation;
 
 import java.util.Scanner;
 
+import ProtectionProxy.ActivityProxy;
 import users.User;
 
 public class Activity {
@@ -20,13 +21,18 @@ public class Activity {
 		String str = new String();
 		int op;
 		
-		System.out.println("What activity will be plan?");
-		System.out.print("1- Presentation\n"
-				+ "2- Laboratory\n");
-		if(userType != 0)
-			System.out.println("3- Normal Class");
+		System.out.println("What activity will be plan?"
+				+ "1- Normal Class\n"
+				+ "2- Presentation\n"
+				+ "3- Laboratory\n");
 		
 		setType(scanI.nextInt());
+		ActivityProxy ap = new ActivityProxy(userType, getType());
+		
+		while(ap.acessActivity() == false){
+			System.out.println("Choose another activity\n");
+			ap.setOption(scanI.nextInt());
+		}
 		
 		System.out.println("Type a title");
 		setTitle(scan.nextLine());

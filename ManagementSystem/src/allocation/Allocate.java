@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Strategy.Strategy;
+import users.User;
 
 public class Allocate extends Strategy{
 	
-	public void Allocate(ArrayList<Allocation> alloc, int userType) {
+	public Allocation Allocate(ArrayList<Allocation> alloc, User u) {
 		System.out.println("WHAT DO YOU WISH TO ALLOCATE?\n(Type the name or the code)");
 		
 		
@@ -33,6 +34,7 @@ public class Allocate extends Strategy{
 			
 			System.out.println("Type the date (DD/MM)");
 			String date = scan.nextLine();
+			toAlloc.setDate(date);
 			String hr = null;
 						
 			if(toAlloc.getSchedules() != null) {
@@ -42,8 +44,6 @@ public class Allocate extends Strategy{
 					}
 				}
 			}
-			
-			System.out.println(hr);
 			
 			boolean x = true;
 			int op;
@@ -78,13 +78,28 @@ public class Allocate extends Strategy{
 			
 			toAlloc.setSchedules(schedules);
 			
-			Activity act = new Activity(userType);
+			Activity act = new Activity(u.getType());
 			
 			schedules.add(date + " at " + sch[op-1] + "\n" + act);
 			toAlloc.setaState("Alocated");
+			u.setAllocationsDate(u.add(u.getAllocationsDate(), date + " " + toAlloc.getName()));
 			System.out.println("Allocation Concluded");		
+			
+			
 		}
 		
+		return toAlloc;
+		
+	}
+	
+	public void confirmAllocation(int option, Allocation toConfirm) {
+		if(option == 1) {
+			toConfirm.setaState("In Progress");
+			System.out.println("Allocation Confirmed");
+		}else {
+			toConfirm.setaState("In Process");
+			System.out.println("Allocation Canceled");
+		}
 	}
 
 }
