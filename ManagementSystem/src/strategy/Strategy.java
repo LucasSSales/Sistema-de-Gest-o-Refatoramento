@@ -37,6 +37,16 @@ public class Strategy<T> {
 		return found;
 	}
 	
+	public void delete (ArrayList<T> a, T t) {
+		a.remove(a.indexOf(t));
+		System.out.println("Removed from list");
+	}
+	
+	public void delete (ArrayList<T> a, int index) {
+		a.remove(index);
+		System.out.println("Removed from list");
+	}
+	
 	
 	// java.lang.ClassCastException (nao casta user p allocation)
 }
