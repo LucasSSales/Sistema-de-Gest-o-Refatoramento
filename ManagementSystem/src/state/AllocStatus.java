@@ -1,5 +1,7 @@
 package state;
 
+import Strategy.Strategy;
+
 public class AllocStatus {
 
 	public String inProcess() {
