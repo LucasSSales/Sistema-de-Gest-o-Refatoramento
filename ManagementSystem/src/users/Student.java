@@ -7,8 +7,9 @@ public class Student extends User {
 	private String StudentType;
 	private String course;
 	
-	public Student(){
-		super();
+	public Student(int numUsers){
+		super(numUsers);
+		setID("STD" + numUsers);
 		setType(0);
 		int option;
 		Scanner scan = new Scanner(System.in);

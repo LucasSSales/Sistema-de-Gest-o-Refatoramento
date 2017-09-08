@@ -6,8 +6,9 @@ public class Researcher extends User {
 	
 	private String research;
 
-	public Researcher(){
-		super();
+	public Researcher(int numUsers){
+		super(numUsers);
+		setID("RSC" + numUsers);
 		setType(1);
 		Scanner scanS = new Scanner(System.in);
 		System.out.println("What's your research?");

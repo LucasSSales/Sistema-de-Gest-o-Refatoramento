@@ -6,8 +6,9 @@ public class Professor extends User {
 	
 	private String subject;
 	
-	public Professor(){
-		super();
+	public Professor(int numUsers){
+		super(numUsers);
+		setID("PRF" + numUsers);
 		setType(1);
 		Scanner scanS = new Scanner(System.in);
 		System.out.println("What subject you'll teach?");
