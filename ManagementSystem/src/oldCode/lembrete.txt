@@ -1,0 +1,3 @@
+Lembrar de ver esse link ( funções de remover)
+
+https://stackoverflow.com/questions/10714233/remove-item-from-arraylist
