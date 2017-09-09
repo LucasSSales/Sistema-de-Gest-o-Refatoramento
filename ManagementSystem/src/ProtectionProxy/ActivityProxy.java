@@ -5,6 +5,10 @@ public class ActivityProxy implements Acess {
 	int option;
 	int userType;
 	
+	public ActivityProxy (User u) {
+		this.u = u;
+	}
+	
 	public ActivityProxy(int userType, int option) {
 		this.option = option;
 		this.userType = userType;
@@ -31,6 +35,14 @@ public class ActivityProxy implements Acess {
 			return true;
 		}
 		
+	}
+
+	@Override
+	public boolean admAcess() {
+		if(u.getType() == -1)
+			return true;
+		else
+			return false;
 	}
 	
 	
