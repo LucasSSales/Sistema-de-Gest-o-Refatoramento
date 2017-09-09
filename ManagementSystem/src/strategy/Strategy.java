@@ -19,18 +19,32 @@ public class Strategy<T> {
 		if(a!=null) {
 			for (T t : a) {
 				try {	
+					
 					Allocation x = (Allocation) t;
 					if(x.getName().equals(key) || x.getCode().equals(key)) {
 						found = (T) x;
 						break;
 					}
 											
-				}catch(ClassCastException exception) {	
-					User x = (User) t;
-					if(x.getName().equals(key) || x.getID().equals(key)) {
-						found = (T) x;
-						break;
-					}	
+				}catch(ClassCastException exception) {
+					
+					try {
+						
+						User x = (User) t;
+						if(x.getName().equals(key) || x.getID().equals(key)) {
+							found = (T) x;
+							break;
+						}
+						
+					}catch(ClassCastException excepition) {
+						
+						String s = (String) t;
+						if(s.equals(key)) {
+							found = (T) s;
+							break;
+						}
+						
+					}
 				}			
 			}
 		}
@@ -47,6 +61,4 @@ public class Strategy<T> {
 		System.out.println("Removed from list");
 	}
 	
-	
-	// java.lang.ClassCastException (nao casta user p allocation)
 }
