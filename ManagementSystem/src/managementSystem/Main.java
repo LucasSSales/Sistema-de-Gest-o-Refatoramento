@@ -2,6 +2,8 @@ package managementSystem;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import ProtectionProxy.ActivityProxy;
 import users.*;
 import allocation.Allocate;
 import allocation.Allocation;
@@ -21,6 +23,8 @@ public class Main {
 		Consult cAlloc = new Consult();
 		Relatory r = new Relatory();
 		Auxiliar aux = new Auxiliar();
+		
+		cUsers.setA(cUsers.add(cUsers.getA(), new Adm("Adimino da Silva", 21)));
 				
 		cAlloc.setA(cAlloc.add(cAlloc.getA(), new Allocation("Projector1", "PRJ001")));		
 		cAlloc.add(cAlloc.getA(), new Allocation("Projector2", "PRJ002"));
@@ -61,24 +65,28 @@ public class Main {
 				User u = (User) cUsers.search(cUsers.getA(), scanS.nextLine());
 				
 				if(u!=null) {
-					ArrayList<Allocation> a = u.getAllocations();
-					if(a!=null) {
-						for (Allocation s : a) {
-							Allocation confirm = s;
-							if(confirm.getDate().substring(0, 5).equals(aux.currentDate()) && !confirm.getaState().equals("In Progress")) {
-								System.out.println("You have an allocation marked for today, want confirm?"
-										+ "\n" + confirm.getName()
-										+ "\n\t1- YES/0- NO");
-								option = scan.nextInt();
-								allocate.confirmAllocation(option, confirm);
-								if(option==0) {
-									allocate.delete(a, a.indexOf(confirm));
-								}
-								break;
-							}
-						}
+					System.out.println("What do you want to do?\n"
+							+ "1- Do allocation\n"
+							+ "2- Comfirm Allocation\n"
+							+ "3- Change Status");
+					option = scan.nextInt();
+					if(option==1) {
+						allocate.Allocate(cAlloc.getA(), u);
+						System.out.println(u.getAllocations());
+					}else if (option==2) {
+						allocate.confirmAllocation(u, cAlloc);					
+					}else if(option == 3) {
+						ActivityProxy ap = new ActivityProxy(u);
+						if(ap.admAcess()) {
+							System.out.println("1-Concluded\n2-Reset");
+							option = scan.nextInt();
+							if(option==1)
+								allocate.setConcluded(cAlloc);
+							else
+								allocate.backToInProcess(cAlloc);
+						}else
+							System.out.println("You can't acess this option!");
 					}
-					u.setAllocations(u.add(u.getAllocations(), allocate.Allocate(cAlloc.getA(), u)));
 				}else
 					System.out.println("You are not registered, so you can't allocate");
 //////////////////////////////////////////////////////////////////////////////////////////
