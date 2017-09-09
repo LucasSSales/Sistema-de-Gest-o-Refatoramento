@@ -1,14 +1,15 @@
 package users;
 
 public class Adm extends User {
-
-	//setType(-1);
 	
 	public Adm(String name, int age) {
-		setType(-1);
-		setName(name);
-		setAge(age);
+		super(name, age);
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "Name: " + getName() + 
+				"\nID: CLASSIFIED  Age: "+ getAge() + "\nType: ADM";
+	}
 }
