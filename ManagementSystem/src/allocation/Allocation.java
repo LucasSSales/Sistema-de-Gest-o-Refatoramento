@@ -12,6 +12,7 @@ public class Allocation extends AllocStatus {
 	private String code;
 	private String date;
 	private ArrayList<String> schedules;
+	private ArrayList<String> ids;
 	private String aState;
 	private ArrayList<Activity> activity;
 	
@@ -70,6 +71,13 @@ public class Allocation extends AllocStatus {
 		this.activity = activity;
 	}
 
+	public ArrayList<String> getIds() {
+		return ids;
+	}
+
+	public void setIds(ArrayList<String> ids) {
+		this.ids = ids;
+	}
 
 	@Override
 	public String toString() {
