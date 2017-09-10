@@ -23,12 +23,12 @@ public class Relatory {
 	}
 
 	public void haveSchedules(Allocation a) {
-		if(a.getSchedules() == null)
+		if(a.getSchedules() == null || a.getSchedules().isEmpty())
 			System.out.println("No allocations planned");
 		else {
 			for (String sch : a.getSchedules()) {
 				System.out.println(sch);
-				numAlloc++;
+				//numAlloc++;
 			}
 		}
 	}

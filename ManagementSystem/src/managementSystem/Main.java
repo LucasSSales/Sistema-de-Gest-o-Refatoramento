@@ -61,9 +61,7 @@ public class Main {
 //////////////////////////////////////////////////////////////////////////////////////////
 			}else if(option==2) {
 				System.out.println("Type your name or ID");
-				
 				User u = (User) cUsers.search(cUsers.getA(), scanS.nextLine());
-				
 				if(u!=null) {
 					System.out.println("What do you want to do?\n"
 							+ "1- Do allocation\n"
@@ -71,8 +69,7 @@ public class Main {
 							+ "3- Change Status");
 					option = scan.nextInt();
 					if(option==1) {
-						allocate.Allocate(cAlloc.getA(), u);
-						//System.out.println(u.getAllocations());
+						r.setNumAlloc(r.getNumAlloc() + allocate.Allocate(cAlloc.getA(), u));
 					}else if (option==2) {
 						allocate.confirmAllocation(u, cAlloc);					
 					}else if(option == 3) {
@@ -113,9 +110,10 @@ public class Main {
 //////////////////////////////////////////////////////////////////////////////////////////
 			}else if(option==4) {
 				System.out.println("Number of Users: " + r.getNumUsers());
-				r.getRelatory(cAlloc.getA());
 				System.out.println("Number of Allocations: "+ r.getNumAlloc()+"\n");
-				r.setNumAlloc(0);
+				r.getRelatory(cAlloc.getA());
+				
+				//r.setNumAlloc(0);
 			}
 			
 			if(option!=0)
