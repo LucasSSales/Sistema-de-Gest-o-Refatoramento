@@ -1,6 +1,7 @@
 package allocation;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 import Strategy.Strategy;
@@ -15,17 +16,7 @@ public class Allocate extends Strategy{
 		
 		Scanner scan = new Scanner(System.in);
 		Scanner scanI = new Scanner(System.in);
-		String s = scan.nextLine();
-		
-		Allocation toAlloc = null;
-
-		for (Allocation al : alloc) {
-			if(s.equals(al.getName()) || s.equals(al.getCode())) {
-				System.out.println("Allocation found");
-				toAlloc = al;
-				break;
-			}
-		}
+		Allocation toAlloc = (Allocation) search(alloc, scan.nextLine());
 		
 		if(toAlloc == null) {
 			System.out.println("Allocation not Found :(");
@@ -96,7 +87,6 @@ public class Allocate extends Strategy{
 			toAlloc.setaState("Alocated");
 			u.setAllocations(u.add(u.getAllocations(), date + " " + toAlloc.getName()+ " at " + sch[op-1]));
 			System.out.println("Allocation Concluded");
-			
 		}
 		
 		return toAlloc;
@@ -120,11 +110,11 @@ public class Allocate extends Strategy{
 				if(date.equals(aux.currentDate())) {
 					conf=1;
 					System.out.println("- " + s.substring(6));
+					String[] fth = s.split(" ");
 					forToday.add(s.substring(6, 11));
-					forTodayHours.add(aux.currentDate() + s.substring(11));
+					forTodayHours.add(aux.currentDate() + " " + fth[2] + " " +fth[3] + " - " + fth[5]);
 				}
 			}
-			
 			
 			if(conf == 0) {
 				System.out.println("No allocations for today");
@@ -134,39 +124,15 @@ public class Allocate extends Strategy{
 				String state;
 				
 				if(option==1) {
-					state = "In Progress";
 					System.out.println("Allocation Confirmed");
-				}else {
-					state = "In Process";
-					System.out.println("Allocation cancelled");
-				}
-				
-				System.out.println(forTodayHours);
-				for(String s : forToday) {
-					String ft = s;
-					Allocation toConfirm = (Allocation) allocs.search(allocs.getA(), ft);
-					toConfirm.setaState(state);
-					
-					if(option!=1) {
-						for(String ss : toConfirm.getSchedules()) {
-							String current = ss;
-							System.out.println("Current " + current.substring(0, 22));
-						
-							for(String sss : forTodayHours) {
-								String current2 = sss;
-								
-								System.out.println("Current2 " + current2);
-								if(current2.equals(current.substring(0, 22))) {
-									toConfirm.getSchedules().remove(toConfirm.getSchedules().indexOf(current));
-									System.out.println("XXXX");
-								}
-								
-							}
-							
-						}
+					for(String s : forToday) {
+						String ft = s;
+						Allocation toConfirm = (Allocation) allocs.search(allocs.getA(), ft);
+						toConfirm.setaState("In Progress");
 					}
+				}else {
+					System.out.println("Allocation wasn't confirmed");
 				}
-				
 			}
 						
 		}else {
@@ -174,7 +140,6 @@ public class Allocate extends Strategy{
 		}
 		
 	}
-
 	
 	public void setConcluded(Consult c) {
 		Auxiliar aux = new Auxiliar();
@@ -199,7 +164,25 @@ public class Allocate extends Strategy{
 			if(al.getaState().equals("Concluded")) {
 				al.setaState("In Process");
 			}
+			
+			if(al.getSchedules() != null) {
+				ArrayList<Integer> indexes = new ArrayList<Integer>();
+				int index=0;
+				int regr=0;
+				for (String str : al.getSchedules()) {
+					String current = str;
+					if(current.substring(0, 5).equals(aux.currentDate())) {
+						indexes.add(index-regr);
+						regr++;
+					}
+					index++;
+				}
+				for(Integer i : indexes) {
+					al.getSchedules().remove((int)i);
+				}
+			}
 		}
+		System.out.println("Ths status and allocations for today has been reseted!");
 	}
 	
 }

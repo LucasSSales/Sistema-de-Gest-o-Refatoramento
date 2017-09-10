@@ -21,7 +21,7 @@ public class Activity {
 		String str = new String();
 		int op;
 		
-		System.out.println("What activity will be plan?"
+		System.out.println("What activity will be plan?\n"
 				+ "1- Normal Class\n"
 				+ "2- Presentation\n"
 				+ "3- Laboratory\n");
