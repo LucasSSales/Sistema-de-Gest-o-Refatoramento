@@ -21,7 +21,7 @@ public class Strategy<T> {
 				try {	
 					
 					Allocation x = (Allocation) t;
-					if(x.getName().equals(key) || x.getCode().equals(key)) {
+					if(x.getName().equals(key) || x.getCode().equals(key) || x.getName().substring(0, 5).equals(key)) {
 						found = (T) x;
 						break;
 					}
