@@ -3,34 +3,41 @@ package allocation;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import state.AllocStatus;
-import state.allocationState;
+import state.*;
 
-public class Allocation extends AllocStatus {
+public class Allocation implements AllocState {
 	
 	private String name;
 	private String code;
 	private String date;
 	private ArrayList<String> schedules;
 	private ArrayList<String> ids;
-	private String aState;
+	//private String aState;
 	private ArrayList<Activity> activity;
 	
 	
 	public Allocation(String name, String code) {
 		this.name = name;
 		this.code = code;
-		setaState(inProcess());
+		setaState(new InProcess());
 	}
 	
-	public String getaState() {
+	
+	private AllocState aState;
+
+	public AllocState getaState() {
 		return aState;
 	}
 
-	public void setaState(String aState) {
+	public void setaState(AllocState aState) {
 		this.aState = aState;
 	}
 
+	@Override
+	public String state() {
+		return this.aState.state();
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -82,7 +89,7 @@ public class Allocation extends AllocStatus {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Name: " + name + "   Status: " + getaState();
+		return "Name: " + name + "  Status: " + state();
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
+import state.*;
 import Strategy.Strategy;
 import managementSystem.Auxiliar;
 import managementSystem.Consult;
@@ -11,12 +12,13 @@ import users.User;
 
 public class Allocate extends Strategy{
 	
-	public Allocation Allocate(ArrayList<Allocation> alloc, User u) {
+	public int Allocate(ArrayList<Allocation> alloc, User u) {
 		System.out.println("WHAT DO YOU WISH TO ALLOCATE?\n(Type the name or the code)");
 		
 		Scanner scan = new Scanner(System.in);
 		Scanner scanI = new Scanner(System.in);
 		Allocation toAlloc = (Allocation) search(alloc, scan.nextLine());
+		int allocs=0;
 		
 		if(toAlloc == null) {
 			System.out.println("Allocation not Found :(");
@@ -84,12 +86,13 @@ public class Allocate extends Strategy{
 			schedules.add(date + " at " + sch[op-1] + "\n" + act);
 			ids.add(u.getID());
 			
-			toAlloc.setaState("Alocated");
+			toAlloc.setaState(new Allocated());
 			u.setAllocations(u.add(u.getAllocations(), date + " " + toAlloc.getName()+ " at " + sch[op-1]));
 			System.out.println("Allocation Concluded");
+			allocs++;
 		}
 		
-		return toAlloc;
+		return allocs;
 	}
 	
 	public void confirmAllocation(User u, Consult allocs) {
@@ -128,7 +131,7 @@ public class Allocate extends Strategy{
 					for(String s : forToday) {
 						String ft = s;
 						Allocation toConfirm = (Allocation) allocs.search(allocs.getA(), ft);
-						toConfirm.setaState("In Progress");
+						toConfirm.setaState(new InProgress());
 					}
 				}else {
 					System.out.println("Allocation wasn't confirmed");
@@ -138,7 +141,6 @@ public class Allocate extends Strategy{
 		}else {
 			System.out.println("No allocations for today");
 		}
-		
 	}
 	
 	public void setConcluded(Consult c) {
@@ -149,7 +151,7 @@ public class Allocate extends Strategy{
 			if(al.getSchedules() != null) {
 				for(String s : al.getSchedules()) {
 					if(s.substring(0, 5).equals(aux.currentDate())) {
-						al.setaState("Concluded");
+						al.setaState(new Concluded());
 					}
 				}
 			}
@@ -161,8 +163,8 @@ public class Allocate extends Strategy{
 		System.out.println("Reseting Status");
 		for(Object a : c.getA()) {
 			Allocation al = (Allocation) a;
-			if(al.getaState().equals("Concluded")) {
-				al.setaState("In Process");
+			if(al.state().equals("Concluded")) {
+				al.setaState(new InProcess());
 			}
 			
 			if(al.getSchedules() != null) {
@@ -184,5 +186,4 @@ public class Allocate extends Strategy{
 		}
 		System.out.println("Ths status and allocations for today has been reseted!");
 	}
-	
 }
