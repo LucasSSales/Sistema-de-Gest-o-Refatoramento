@@ -28,6 +28,7 @@ public class Relatory {
 		else {
 			for (String sch : a.getSchedules()) {
 				System.out.println(sch);
+				numAlloc++;
 			}
 		}
 	}

@@ -25,6 +25,7 @@ public class Main {
 		Auxiliar aux = new Auxiliar();
 		
 		cUsers.setA(cUsers.add(cUsers.getA(), new Adm("Adimino da Silva", 21)));
+		r.setNumUsers(r.getNumUsers()+1);
 				
 		cAlloc.setA(cAlloc.add(cAlloc.getA(), new Allocation("Projector1", "PRJ001")));		
 		cAlloc.add(cAlloc.getA(), new Allocation("Projector2", "PRJ002"));
@@ -33,7 +34,6 @@ public class Main {
 		cAlloc.add(cAlloc.getA(), new Allocation("Auditorium", "ADT001"));		 
 		cAlloc.add(cAlloc.getA(), new Allocation("Laboratory1", "LB001"));
 		cAlloc.add(cAlloc.getA(), new Allocation("Laboratory2", "LB002"));
-		
 		
 		System.out.println("WHAT DO YOU WISH TO DO?");
 		do {
@@ -67,12 +67,12 @@ public class Main {
 				if(u!=null) {
 					System.out.println("What do you want to do?\n"
 							+ "1- Do allocation\n"
-							+ "2- Comfirm Allocation\n"
+							+ "2- Confirm Allocation\n"
 							+ "3- Change Status");
 					option = scan.nextInt();
 					if(option==1) {
 						allocate.Allocate(cAlloc.getA(), u);
-						System.out.println(u.getAllocations());
+						//System.out.println(u.getAllocations());
 					}else if (option==2) {
 						allocate.confirmAllocation(u, cAlloc);					
 					}else if(option == 3) {
@@ -113,10 +113,9 @@ public class Main {
 //////////////////////////////////////////////////////////////////////////////////////////
 			}else if(option==4) {
 				System.out.println("Number of Users: " + r.getNumUsers());
-				System.out.println("Number of Allocations: "+ r.getNumAlloc()+"\n");
-
 				r.getRelatory(cAlloc.getA());
-				System.out.println("");
+				System.out.println("Number of Allocations: "+ r.getNumAlloc()+"\n");
+				r.setNumAlloc(0);
 			}
 			
 			if(option!=0)
